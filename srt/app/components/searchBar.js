@@ -20,7 +20,7 @@ export const SearchBar = () => {
     };
 
     return (
-        <div className="flex justify-center my-4">
+        <div className="flex justify-center mt-4 mb-4">
             <div className="w-3/4 max-w-2xl">
                 <div className="flex border-2 rounded">
                     <input 
