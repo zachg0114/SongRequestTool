@@ -20,9 +20,9 @@ export const SearchBar = () => {
     };
 
     return (
-        <div className="flex justify-center mt-4 mb-4">
-            <div className="w-3/4 max-w-2xl">
-                <div className="flex border-2 rounded">
+        <div className="flex justify-center mt-8 mb-4 md:w-full w-80">
+            <div className="w-full max-w-2xl">
+                <div className="flex border-2 rounded w-full">
                     <input 
                         ref={searchRef} 
                         type="text" 
@@ -45,11 +45,11 @@ export const SearchBar = () => {
                                 index < 10 && (
                                     <a
                                         key={index}
-                                        href={result.link}
                                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-b last:border-b-0"
                                         role="menuitem"
+                                        href={`/confirm?id=${result.id.videoId}`}
                                     >
-                                        {index + 1} - {result.title}
+                                            {index + 1} - {result.title}
                                     </a>
                                 )
                             ))}
