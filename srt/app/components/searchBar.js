@@ -47,7 +47,7 @@ export const SearchBar = () => {
                                         key={index}
                                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-b last:border-b-0"
                                         role="menuitem"
-                                        href={`/confirm?id=${result.id.videoId}`}
+                                        href={`/confirm?id=${result.id}`}
                                     >
                                             {index + 1} - {result.title}
                                     </a>

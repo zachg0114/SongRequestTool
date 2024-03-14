@@ -1,3 +1,4 @@
+
 async function getSearchResults(query){
     let data;
     //post request to the server
