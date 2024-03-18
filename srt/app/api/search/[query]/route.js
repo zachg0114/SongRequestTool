@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { search } from "@/lib/search";
 
-export async function POST(request){
-   try{
-        const { query } = await request.json();
+export async function GET(request, {params}){
+     try{
+        const query = params.query
         const result = await search(query);
         return NextResponse.json(result);
    }
