@@ -4,14 +4,19 @@ import Link from 'next/link';
 import { useState } from 'react';
 import useVideo from './useVideo';
 import sendSongToQueue from './sendQueue';
+import { useRouter } from 'next/navigation';
 
 export default function VideoConfirm({ id }) {
     const {data, loading, error} = useVideo(id);
-    
+    const router = useRouter();
     const handleConfirm = async () => {
-        const res = await sendSongToQueue(data.id);
-        if(res.message !== "success"){
-            alert("Error: " + res.message);
+        const res = await sendSongToQueue(data);
+        if(res.status != 200){
+            alert("Error: " + res.statusText);
+        }
+        else{
+            alert("Song added to queue!");
+            router.push('/')
         }
     }
 
