@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import useQueue from './useQueue';
 import delQueue from './delQueue';
+
 export default function AdminQueue() {
     const {queue, isLoading, error, mutate} = useQueue();
 
@@ -10,6 +11,8 @@ export default function AdminQueue() {
         await delQueue(songId); // Ensure delQueue is async or returns a promise
         mutate(); // Revalidate / refetch the queue data
     };
+
+    console.log(queue);
 
   return (
     <section>
@@ -29,8 +32,9 @@ export default function AdminQueue() {
                                     <p className="text-xs md:text-sm text-gray-400">{song.data.songFormattedDuration}</p>
                                 </div>
                                 <div className="flex space-x-2">
-                                    <Link href={`https://apiyoutube.cc/320/${song.id.split("").reverse().join('')}::4e91cc6225ee3f2c380919e39b5a44f2::1710828856::no::su`}>
-                                        <button onClick={() => handleDelete(song.id)} className="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 text-xs rounded transition duration-200 ease-in-out md:py-2 md:px-4 md:text-base">Accept</button>                                    </Link>
+                                    <Link href={`https://apiyoutube.cc/320/${song.id.split("").reverse().join('')}::4e91cc6225ee3f2c380919e39b5a44f2::1710828856::no::su`} >
+                                        <button onClick={() => handleDelete(song.id)} className="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 text-xs rounded transition duration-200 ease-in-out md:py-2 md:px-4 md:text-base">Accept</button>                                    
+                                    </Link>
                                         <button onClick={() => handleDelete(song.id)} className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 text-xs rounded transition duration-200 ease-in-out md:py-2 md:px-4 md:text-base">Reject</button>
                                 </div>
                             </div>

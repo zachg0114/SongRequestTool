@@ -1,5 +1,5 @@
-import { SearchBar } from "./components/searchBar";
-import AuthButton from "./components/authButton";
+import { SearchBar } from "../components/searchBar";
+import AuthButton from "../components/authButton";
 import { getCurrentUser } from "@/lib/session";
 export default function Home() {  
   return (

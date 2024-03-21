@@ -1,6 +1,6 @@
-import ConfirmParam from '../../components/confirmParam';
-import { SearchBar } from '../../components/searchBar';
-import VideoConfirm from '../../components/videoConfirm';
+import ConfirmParam from '../../../components/confirmParam';
+import { SearchBar } from '../../../components/searchBar';
+import VideoConfirm from '../../../components/videoConfirm';
 
 export default async function Home({params}) {
   const { id } = params;
