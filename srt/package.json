@@ -17,7 +17,8 @@
     "react-dom": "^18.2.0",
     "swr": "^2.2.5",
     "youtube-mp3-converter": "^1.0.3",
-    "youtube-sr": "^4.3.10"
+    "youtube-sr": "^4.3.10",
+    "yt-get": "^1.1.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
