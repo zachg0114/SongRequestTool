@@ -3,6 +3,8 @@
 import { signIn } from "next-auth/react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
+import {Button} from "@nextui-org/react";
+
 
 export function LoginButton() {
     return (
@@ -17,9 +19,9 @@ export function LogoutButton() {
     }
     return (
         <div>
-            <button className="bg-black hover:bg-gray-500 text-white py-2 px-4 rounded border border-white mb-4" onClick={() => signOut()}>Logout</button>
+            <Button className="bg-black hover:bg-gray-500 text-white py-2 px-4 rounded border border-white mb-4" onClick={() => signOut()}>Logout</Button>
             <Link href="/admin">
-                <button key="admin" className="ml-2 bg-black hover:bg-gray-500 text-white py-2 px-4 rounded border border-white mb-4">Admin</button>
+                <Button key="admin" className="ml-2 bg-black hover:bg-gray-500 text-white py-2 px-4 rounded border border-white mb-4">Admin</Button>
             </Link>
         </div>
     );

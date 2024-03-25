@@ -1,6 +1,5 @@
-
-import AdminWrapper from "../../components/adminWrapper";
-import AdminQueue from '../../components/adminQueue';
+import AdminWrapper from "@/components/admin/adminWrapper";
+import AdminQueue from '@/components/admin/adminQueue';
 
 export default function Home() {
     return (

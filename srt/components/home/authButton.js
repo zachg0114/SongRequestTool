@@ -1,5 +1,5 @@
 import { getCurrentUser } from "@/lib/session";
-import { LoginButton } from "./loginButton";
+import { LoginButton } from "./loginButton"
 import { LogoutButton } from "./loginButton";
 
 export default async function AuthButton() {

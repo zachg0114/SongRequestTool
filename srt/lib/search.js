@@ -1,3 +1,5 @@
+'use server';
+
 import YouTube from "youtube-sr";
 
 export const search = async (query) => {
