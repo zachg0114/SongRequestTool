@@ -29,7 +29,7 @@ export const SearchBar = () => {
                         type="text" 
                         id="search" 
                         placeholder="Search" 
-                        className="px-4 py-2 w-full text-black"
+                        className="px-4 py-2 w-full text-white"
                         onKeyDown={handleKeyDown}
                     />
                     <Button 
