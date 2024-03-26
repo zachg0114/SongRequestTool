@@ -15,11 +15,11 @@ export async function POST(request, { params }) {
     if (data.songDuration > 60 * 10 * 1000) {
       return NextResponse.json(
         {
-          message: "Error: Song is too long. Max length is 10 minutes.",
+          message: "Song is too long. Max length is 10 minutes.",
         },
         {
           status: 400,
-          statusText: "Error: Song is too long. Max length is 10 minutes.",
+          statusText: "Song is too long. Max length is 10 minutes.",
         }
       );
     }

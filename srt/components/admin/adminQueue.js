@@ -67,7 +67,7 @@ export default function AdminQueue() {
                 </DropdownMenu>
                 </Dropdown>                
                 <Link href="/">
-                    <Button className="text-white bg-black hover:bg-blue-700 font-bold py-1 px-2 md:py-2 md:px-4 rounded transition duration-200 ease-in-out border border-white text-xs md:text-base">
+                    <Button variant="shadow" className="text-white bg-purple-600 hover:bg-purple-600 font-bold py-1 px-2 md:py-2 md:px-4 rounded transition duration-200 ease-in-out border border-white text-xs md:text-base">
                         Home
                     </Button>
                 </Link>

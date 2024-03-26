@@ -3,7 +3,7 @@ import { User } from "@nextui-org/react";
 
 export default function UserProfile({ userName, userAt, userAtLink, avatarSrc }) {
   return (
-    <div className="scale-150 pb-4"> {/* Use Tailwind's scale utility */}
+    <div className="pb-4"> 
       <User
         name={userName}
         description={(
