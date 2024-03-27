@@ -7,18 +7,25 @@ import {Input, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button,
 
 export const SearchBar = () => {
     const searchRef = useRef();
+    const dropdownRef = useRef();
     const [searchResults, setSearchResults] = useState([]);
     const [showDropdown, setShowDropdown] = useState(false);
     const [id, setId] = useState(null);
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [isLoading, setIsLoading] = useState(false);
-    // const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-    // useEffect(() => {
-    //     window.addEventListener('resize', () => {
-    //         setScreenWidth(window.innerWidth);
-    //     });
-    // }, []);
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setShowDropdown(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [dropdownRef]);
 
     const getSearch = async () => {
         setIsLoading(true);
@@ -37,11 +44,12 @@ export const SearchBar = () => {
     const onDropdownClick = (index, id) => {
         setId(id);
         onOpen();
+        setShowDropdown(false);
     };
 
     return (
         <div className="flex justify-center mb-4 relative">
-            <div className="w-full md:w-[32rem] max-w-2xl"> {/* Adjust this line */}
+            <div className="w-full md:w-[32rem] max-w-2xl">
                 <div className="flex rounded w-full">
                     <Input 
                         radius="none"
@@ -54,52 +62,46 @@ export const SearchBar = () => {
                         key="outside"
                         onKeyDown={handleKeyDown}
                     />
-                        <div className='pt-4'>
-                        <Button 
-                            radius="lg"
-                            isLoading={isLoading}
-                            onClick={getSearch}
-                            className="flex items-center justify-center text-white hover:bg-purple-700 ml-2 bg-purple-800/50"
-                        >
-                            {isLoading ? (
-                                <div className="flex justify-center items-center">
-                                    Loading...
-                                </div>
-                            ) : (
-                                'Search'
-                            )}
-                        </Button>
-                        </div>
+                    <Button 
+                        radius="lg"
+                        isLoading={isLoading}
+                        onClick={getSearch}
+                        className="text-white hover:bg-purple-700 ml-2 mt-4 bg-purple-800/50"
+                    >
+                        {isLoading ? 'Loading...' : 'Search'}
+                    </Button>
                 </div>
                 {showDropdown && (
-                        <div className="absolute w-full mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10 overflow-auto">
-                            <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                {searchResults.map((result, index) => (
-                                    index < 10 && (
-                                        <a
-                                            key={index}
-                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-b last:border-b-0"
-                                            role="menuitem"
-                                            onClick={() => onDropdownClick(index, result.id)}
-                                        >
-                                            {index + 1} - {result.title}
-                                        </a>
-                                    )
-                                ))}
-                            </div>
+                    <div 
+                        className="absolute w-full mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10 overflow-auto"
+                        ref={dropdownRef}
+                    >
+                        <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                            {searchResults.map((result, index) => (
+                                index < 10 && (
+                                    <a
+                                        key={index}
+                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-b last:border-b-0"
+                                        role="menuitem"
+                                        onClick={() => onDropdownClick(index, result.id)}
+                                    >
+                                        {index + 1} - {result.title}
+                                    </a>
+                                )
+                            ))}
                         </div>
+                    </div>
                 )}
             </div>
             <Modal 
-            backdrop="blur" 
-            // size={screenWidth < 768 ? "xs" : "lg"}
-            isOpen={isOpen} 
-            onOpenChange={onOpenChange}
-            isDismissable={false}
-            placement="center"
-                >
-                    <ConfirmModal id={id}/>
-                </Modal>
+                backdrop="blur"
+                isOpen={isOpen} 
+                onOpenChange={onOpenChange}
+                isDismissable={false}
+                placement="center"
+            >
+                <ConfirmModal id={id}/>
+            </Modal>
         </div>
     );
-}
+};

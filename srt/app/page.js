@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center sm:p-10 w-full relative bg-[#0e0217]"> {/* Ensure this is relative */}
       <Card className='border-none bg-background/60 dark:bg-default-100/50 m-8'>
-        <CardHeader className='flex gap-2'>
-          <h2 className="text-4xl font-bold text-center px-4 sm:px-10 ">DJ Song Request</h2>
+        <CardHeader className='flex justify-center w-full'>
+          <h2 className="text-4xl font-bold text-center w-full">DJ Song Request</h2>
         </CardHeader>
         <Divider />
         <CardBody>
