@@ -1,4 +1,5 @@
-'use client';
+'use client'
+
 import { useRef, useState, useEffect } from "react";
 import getSearchResults from "./getSearch";
 import ConfirmModal from "../confirm/confirmModal";
@@ -11,13 +12,13 @@ export const SearchBar = () => {
     const [id, setId] = useState(null);
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const [isLoading, setIsLoading] = useState(false);
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    // const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-    useEffect(() => {
-        window.addEventListener('resize', () => {
-            setScreenWidth(window.innerWidth);
-        });
-    }, []);
+    // useEffect(() => {
+    //     window.addEventListener('resize', () => {
+    //         setScreenWidth(window.innerWidth);
+    //     });
+    // }, []);
 
     const getSearch = async () => {
         setIsLoading(true);
@@ -54,14 +55,20 @@ export const SearchBar = () => {
                         onKeyDown={handleKeyDown}
                     />
                         <div className='pt-4'>
-                            <Button 
-                                radius="lg"
-                                isLoading={isLoading}
-                                onClick={getSearch}
-                                className="flex items-center justify-center text-white hover:bg-purple-700 ml-2 bg-purple-800/50"
-                            >
-                                Search
-                            </Button>
+                        <Button 
+                            radius="lg"
+                            isLoading={isLoading}
+                            onClick={getSearch}
+                            className="flex items-center justify-center text-white hover:bg-purple-700 ml-2 bg-purple-800/50"
+                        >
+                            {isLoading ? (
+                                <div className="flex justify-center items-center">
+                                    Loading...
+                                </div>
+                            ) : (
+                                'Search'
+                            )}
+                        </Button>
                         </div>
                 </div>
                 {showDropdown && (
@@ -85,7 +92,7 @@ export const SearchBar = () => {
             </div>
             <Modal 
             backdrop="blur" 
-            size={screenWidth < 768 ? "xs" : "lg"}
+            // size={screenWidth < 768 ? "xs" : "lg"}
             isOpen={isOpen} 
             onOpenChange={onOpenChange}
             isDismissable={false}

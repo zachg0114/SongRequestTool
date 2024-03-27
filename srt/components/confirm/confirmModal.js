@@ -24,7 +24,11 @@ export default function ConfirmModal({ id }) {
           {(onClose) => (
             <section>
               <ModalHeader className="flex flex-col gap-1 pb-0">{data?.title}</ModalHeader>
-              {isLoading && <Spinner />}
+              {isLoading && 
+                <div className="flex justify-center items-center h-[250px]"> {/* Ensure the container is large enough to center the spinner vertically */}
+                  <Spinner /> {/* Make sure the spinner is the only child to center it correctly */}
+              </div>
+              }
               {!isLoading && <>
               <ModalBody>
               <p>Duration: {data?.duration_formatted}</p>
