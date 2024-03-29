@@ -26,21 +26,21 @@ export default function Home() {
         <Card className='mt-10'>
           <h3 className="md:text-2xl text-lg font-bold text-center sm:px-10 pb-4 pt-4">DJ Socials</h3>
           <Divider />
-          <CardBody>
-            <div className="flex gap-3">
+          <CardBody className='px-16 pt-8'>
+            <div className="flex gap-3 scale-150">
               <UserProfile
-                userName="Zach"
-                userAt="@johndoe"
-                userAtLink="https://twitter.com/"
-                avatarSrc="https://example.com/avatar.jpg"
+                userName="DJ Chandi"
+                userAt="@djchandii"
+                userAtLink="https://www.instagram.com/djchandii/"
+                avatarSrc="https://i.imgur.com/ILNA1Vj.jpeg"
               />
               <Divider orientation="vertical"/>
-              <UserProfile
+              {/* <UserProfile
                 userName="vunsh"
                 userAt="@vunsh"
                 userAtLink="https://twitter.com/"
                 avatarSrc="https://example.com/avatar.jpg"
-              />
+              /> */}
             </div>
           </CardBody>
         </Card>
