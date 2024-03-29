@@ -1,4 +1,3 @@
-'use server';
 
 import YouTube from "youtube-sr";
 

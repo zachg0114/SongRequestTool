@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import addSongToQueue from "@/lib/mongo/addSongToQueue";
-
 export async function POST(request, { params }) {
   try {
     const id = params.id;

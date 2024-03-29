@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import {Spinner, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 import Link from 'next/link';
@@ -7,15 +9,27 @@ import sendSongToQueue from '../util/sendQueue';
 import { useRouter } from 'next/navigation';
 export default function ConfirmModal({ id }) {
     const {data, isLoading, error} = useVideo(id);
-    const router = useRouter();
     const handleConfirm = async () => {
         const res = await sendSongToQueue(data);
         if(res.status != 200){
             alert("Error: " + res.statusText);
         }
         else{
-            alert("Song added to queue!");
-            router.push('/') 
+            alert("Song added to queue")
+            if(Notification.permission == "granted"){
+              new Notification("Song added to queue", {
+                body: data.title
+              });
+            }
+            else if(Notification.permission != "granted"){
+              Notification.requestPermission().then((permission) => {
+                if(permission == "granted"){
+                  new Notification("Song added to queue", {
+                    body: data.title
+                  });
+                }
+              });
+            }
         }
     }
   return (

@@ -14,6 +14,7 @@ export const SearchBar = () => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [isLoading, setIsLoading] = useState(false);
 
+
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -59,6 +60,7 @@ export const SearchBar = () => {
                         label="Enter your song here..."
                         className="w-full text-white"
                         variant="underlined"
+                        style={{fontSize: '16px'}}
                         key="outside"
                         onKeyDown={handleKeyDown}
                     />
@@ -72,26 +74,27 @@ export const SearchBar = () => {
                     </Button>
                 </div>
                 {showDropdown && (
-                    <div 
-                        className="absolute w-full mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10 overflow-auto"
-                        ref={dropdownRef}
-                    >
-                        <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                            {searchResults.map((result, index) => (
-                                index < 10 && (
-                                    <a
-                                        key={index}
-                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-b last:border-b-0"
-                                        role="menuitem"
-                                        onClick={() => onDropdownClick(index, result.id)}
-                                    >
-                                        {index + 1} - {result.title}
-                                    </a>
-                                )
-                            ))}
-                        </div>
+                <div 
+                    className="absolute w-full mt-1 rounded-md shadow-lg bg-gray-900 text-white ring-1 ring-black ring-opacity-5 z-10 overflow-auto"
+                    ref={dropdownRef}
+                >
+                    <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                        {searchResults.map((result, index) => (
+                            index < 10 && (
+                                <a
+                                    key={index}
+                                    className="block px-4 py-2 text-sm hover:bg-gray-700 border-b last:border-b-0"
+                                    role="menuitem"
+                                    onClick={() => onDropdownClick(index, result.id)}
+                                >
+                                    {index + 1} - {result.title}
+                                </a>
+                            )
+                        ))}
                     </div>
-                )}
+                </div>
+            )}
+
             </div>
             <Modal 
                 backdrop="blur"
