@@ -16,20 +16,6 @@ export default function ConfirmModal({ id }) {
         }
         else{
             alert("Song added to queue")
-            if(Notification.permission == "granted"){
-              new Notification("Song added to queue", {
-                body: data.title
-              });
-            }
-            else if(Notification.permission != "granted"){
-              Notification.requestPermission().then((permission) => {
-                if(permission == "granted"){
-                  new Notification("Song added to queue", {
-                    body: data.title
-                  });
-                }
-              });
-            }
         }
     }
   return (

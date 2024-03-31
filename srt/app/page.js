@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { SearchBar } from '@/components/home/searchBar';
 import AuthButton from "@/components/home/authButton";
 import UserProfile from "@/components/home/userProfile";
@@ -7,9 +6,6 @@ import {Card, CardHeader, CardBody, CardFooter, Divider, Link, Image} from "@nex
 export default function Home() {
   return (
     <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-      </Head>
       <main className="flex min-h-screen flex-col items-center sm:p-10 w-full relative bg-[#0e0217]">
         <Card className='border-none bg-background/60 dark:bg-default-100/50 m-8'>
           <CardHeader className='flex justify-center w-full'>

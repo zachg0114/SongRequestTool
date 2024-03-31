@@ -2,22 +2,50 @@
 
 import {Checkbox, CheckboxGroup, Button, Spinner, Dropdown, DropdownTrigger, DropdownItem, DropdownMenu} from "@nextui-org/react";
 
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Link from 'next/link';
 
 import useQueue from '../util/useQueue';
 import delQueue from '../util/delQueue';
+import sendNotif from "../util/sendNotif";
 
 import getDownload from './getDownload';
 
 export default function AdminQueue() {
     const {queue, isLoading, error, mutate} = useQueue();
+    //store the queue in a state
+    const [queueState, setQueueState] = useState([]);
+
+
+    useEffect(() => {
+        if (queue) {
+            if (queue.collection.length > queueState.length) {
+                if(queueState.length === 0){
+                    setQueueState(queue.collection);
+                    return;
+                }
+                sendNotif(queue.collection[queue.collection.length - 1]);
+                console.log('NDAOWINDAONWDnoiaWD')
+                setQueueState(queue.collection);
+            }
+            else if (queue.collection.length < queueState.length) {
+                setQueueState(queue.collection);
+                console.log("LOLLLL SOMETHING WAS REMOVED")
+            }
+        }
+    }, [queue]);
+    
     const [selectedSongs, setSelectedSongs] = useState([]);
 
     const handleDelete = async (songId) => {
         await delQueue(songId);
         mutate();
     };
+
+    
+    if(queue){
+        //
+    }
 
     const handleDeleteAndDownload = async (songId) => {
         await delQueue(songId);
