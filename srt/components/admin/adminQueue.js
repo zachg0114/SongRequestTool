@@ -14,23 +14,28 @@ import getDownload from './getDownload';
 export default function AdminQueue() {
     const {queue, isLoading, error, mutate} = useQueue();
     //store the queue in a state
-    const [queueState, setQueueState] = useState([]);
+    const [queueState, setQueueState] = useState(['NOTHING']);
+
+useEffect(() => {
+    setInterval(() => {
+        mutate();
+    }, 10000);
+}, []);
 
 
-    useEffect(() => {
+
+useEffect(() => {
         if (queue) {
-            if (queue.collection.length > queueState.length) {
-                if(queueState.length === 0){
+            if (queue.collection.length > queueState.length - 1) {
+                if(queueState[0] == 'NOTHING'){
                     setQueueState(queue.collection);
                     return;
                 }
                 sendNotif(queue.collection[queue.collection.length - 1]);
-                console.log('NDAOWINDAONWDnoiaWD')
                 setQueueState(queue.collection);
             }
             else if (queue.collection.length < queueState.length) {
                 setQueueState(queue.collection);
-                console.log("LOLLLL SOMETHING WAS REMOVED")
             }
         }
     }, [queue]);
@@ -85,11 +90,11 @@ export default function AdminQueue() {
         <section>
             <div className="flex justify-between items-center">
                 <h1 className="text-xl md:text-xl font-bold text-gray-300 mb-4">Admin Page</h1>
-                <Dropdown>
+                <Dropdown aria-label="dropdown">
                 <DropdownTrigger>
                     <Button>Actions</Button>
                 </DropdownTrigger>
-                <DropdownMenu className="text-center" disabledKeys={selectedSongs.length ? null : ['acceptSelected', 'rejectSelected']}>
+                <DropdownMenu aria-label="dropdownMenu" className="text-center" disabledKeys={selectedSongs.length ? null : ['acceptSelected', 'rejectSelected']}>
                     <DropdownItem key="acceptSelected" onClick={handleAcceptSelectedSongs} className="flex justify-center">Accept Selected Songs</DropdownItem>
                     <DropdownItem key="rejectSelected" onClick={handleDeleteSelectedSongs} className="flex justify-center text-danger" color="danger">Reject Selected Songs</DropdownItem>
                 </DropdownMenu>

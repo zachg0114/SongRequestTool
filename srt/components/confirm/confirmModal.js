@@ -7,17 +7,28 @@ import { useState } from 'react';
 import useVideo from '../util/useVideo'
 import sendSongToQueue from '../util/sendQueue';
 import { useRouter } from 'next/navigation';
+import addNotification from "react-push-notification";
+
+
 export default function ConfirmModal({ id }) {
     const {data, isLoading, error} = useVideo(id);
     const handleConfirm = async () => {
         const res = await sendSongToQueue(data);
         if(res.status != 200){
-            alert("Error: " + res.statusText);
-        }
-        else{
-            alert("Song added to queue")
-        }
+          addNotification({
+              title: 'Error',
+              message: res.statusText,
+              theme: 'red',
+          });
+      }
+      else{
+          addNotification({
+              title: 'Success',
+              message: `${data.title} has been added to the queue!`,
+              theme: 'black',
+          });
     }
+  } 
   return (
 <>
         <ModalContent>

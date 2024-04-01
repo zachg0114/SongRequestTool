@@ -3,9 +3,12 @@ import AuthButton from "@/components/home/authButton";
 import UserProfile from "@/components/home/userProfile";
 import {Card, CardHeader, CardBody, CardFooter, Divider, Link, Image} from "@nextui-org/react";
 
+import Notifs from '@/components/util/notifWrapper';
+
 export default function Home() {
   return (
     <>
+      <Notifs />
       <main className="flex min-h-screen flex-col items-center sm:p-10 w-full relative bg-[#0e0217]">
         <Card className='border-none bg-background/60 dark:bg-default-100/50 m-8'>
           <CardHeader className='flex justify-center w-full'>

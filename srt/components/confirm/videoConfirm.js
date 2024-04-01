@@ -7,16 +7,27 @@ import sendSongToQueue from '../util/sendQueue';
 import { useRouter } from 'next/navigation';
 import {Button, Spinner} from "@nextui-org/react";
 
+import addNotification from 'react-push-notification';
+
 export default function VideoConfirm({ id }) {
     const {data, isLoading, error} = useVideo(id);
     const router = useRouter();
     const handleConfirm = async () => {
         const res = await sendSongToQueue(data);
         if(res.status != 200){
-            alert("Error: " + res.statusText);
+            addNotification({
+                title: 'Error',
+                subtitle: `There was an error adding ${data.title} to the queue!`,
+                message: res.statusText,
+                theme: 'red',
+            });
         }
         else{
-            alert("Song added to queue!");
+            addNotification({
+                title: 'Success',
+                message: `${data.title} has been added to the queue!`,
+                theme: 'black',
+            });
             router.push('/')
         }
     }

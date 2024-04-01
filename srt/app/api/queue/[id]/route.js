@@ -22,17 +22,30 @@ export async function POST(request, { params }) {
         }
       );
     }
-    await addSongToQueue(id, data);
-    return NextResponse.json(
-      {
-        message: "success",
-        data: data,
-      },
-      {
-        status: 200,
-        statusText: "success",
-      }
-    );
+    const result = await addSongToQueue(id, data);
+    if (!result) {
+      return NextResponse.json(
+        {
+          message: "Error: Song has already been requested.",
+        },
+        {
+          status: 400,
+          statusText: "Error: Song has already been requested.",
+        }
+      );
+    }
+    if (result) {
+      return NextResponse.json(
+        {
+          message: "success",
+          data: data,
+        },
+        {
+          status: 200,
+          statusText: "success",
+        }
+      );
+    }
   } catch (e) {
     console.log(e);
     return NextResponse.json(

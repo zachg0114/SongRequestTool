@@ -1,3 +1,6 @@
+import addNotification from 'react-push-notification';
+
+
 const sendNotif = (latestSong) => {
     if (!('Notification' in window)) {
         console.log('This browser does not support desktop notification');
@@ -11,16 +14,12 @@ const sendNotif = (latestSong) => {
         return;
     }
 
-    const title = latestSong.data.songName;
-    const message = `Song added to Queue: ${title}`;
-    const options = {
-        body: message,
-    };
-    const notif = new Notification('DJ Song Request', options);
-    notif.onclick = () => {
-        window.focus();
-        notif.close();
-    };
+    addNotification({
+        title: 'Song Added to Queue!',
+        message: `${latestSong.data.songName}`,
+        native: true,
+        onClick: () => { window.focus(); },
+    });
 }
 
 export default sendNotif;
