@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import Providers from './providers'
 
@@ -13,6 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className='dark'>
+      <SpeedInsights/>
       <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>
