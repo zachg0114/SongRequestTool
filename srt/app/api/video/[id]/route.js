@@ -1,15 +1,15 @@
+import { getInfo } from "@distube/ytdl-core";
 import { NextResponse } from "next/server";
-import getVideo from "@/lib/getVideo";
 
-export async function GET(request, {params}){
-   try{
-        const id = params.id
-        if(!id) return NextResponse.error("Query is required");
-        const result = await getVideo(`https://www.youtube.com/watch?v=${id}`);
-        return NextResponse.json(result);
-   }
-   catch(e){
-        console.log(e)
-        return NextResponse.error(e);
-   }
+export async function GET(request, { params }) {
+  try {
+    const id = params.id;
+    if (!id) return NextResponse.error("Query is required");
+    const result = await getInfo(`https://www.youtube.com/watch?v=${id}`);
+    return NextResponse.json(result.videoDetails);
+  } catch (e) {
+    console.log(e);
+    return NextResponse.error(e);
+  }
 }
+
