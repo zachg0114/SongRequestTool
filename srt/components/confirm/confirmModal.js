@@ -42,7 +42,7 @@ export default function ConfirmModal({ id }) {
         {(onClose) => (
           <section>
             <ModalHeader className="flex flex-col gap-1 pb-0">
-              {data.title}
+              {data?.title}
             </ModalHeader>
             {isLoading && (
               <div className="flex justify-center items-center h-[250px]">
@@ -58,8 +58,8 @@ export default function ConfirmModal({ id }) {
                   <p>Duration: {data?.lengthSeconds}</p>
                   <div className="flex flex-col justify-center items-center">
                     <iframe
-                      src={data.embed.iframeUrl}
-                      alt={data.title}
+                      src={data?.embed.iframeUrl}
+                      alt={data?.title}
                       width="400"
                       height="250"
                       className="md:w-[400px] md:h-[250px] w-[300px] h-[200px]"
