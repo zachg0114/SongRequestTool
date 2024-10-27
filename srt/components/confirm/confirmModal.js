@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Spinner,
   ModalContent,
@@ -16,9 +16,18 @@ import useVideo from "../util/useVideo";
 import sendSongToQueue from "../util/sendQueue";
 import { useRouter } from "next/navigation";
 import addNotification from "react-push-notification";
+import ytdl from "@distube/ytdl-core";
 
 export default function ConfirmModal({ id }) {
-  const { data, isLoading, error } = useVideo(id);
+  const [data, setData] = useState(undefined);
+
+  useEffect(async () => {
+    const data = await ytdl.getInfo(id);
+    console.log(data);
+    setData(data);
+  }, []);
+
+  // const { data, isLoading, error } = useVideo(id);
   const handleConfirm = async () => {
     const res = await sendSongToQueue(data);
     if (res.status != 200) {
